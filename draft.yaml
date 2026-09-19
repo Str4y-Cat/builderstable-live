@@ -1,0 +1,85 @@
+## Blueprint draft: TravelBuddy schema
+## Source of truth: mock/src/types/index.ts
+##
+## Run: php artisan blueprint:build
+## This generates: migrations, Eloquent models, and factories.
+## Controllers/routes are NOT defined here — those are built by hand in Phase 2.
+##
+## Design notes:
+## - assigned_traveler_ids / document_ids / tags are stored as JSON arrays
+##   (cast to `array` on the model) rather than pivot tables, to match the
+##   mock's data shape and keep the hackathon schema simple.
+## - `user_id` on Trip is the curator (owner). Blueprint auto-generates a
+##   `user()` belongsTo relation from the `id foreign` column; rename to
+##   `curator()` by hand after generation if desired.
+## - share_code on Traveler is the public identifier used for the
+##   read-only /trips/{shareCode} view.
+
+models:
+  Trip:
+    user_id: id foreign onDelete:cascade
+    name: string:255
+    destination: string:255 nullable
+    start_date: date nullable
+    end_date: date nullable
+    description: text
+    badge: enum:planning,locked,on-hold,wrap default:planning
+    tags: json nullable
+    auto_notify_on_assign: boolean default:false
+    softDeletes
+    relationships:
+      hasMany: Traveler, ItineraryItem, Document, NotificationLog
+
+  Traveler:
+    trip_id: id foreign onDelete:cascade
+    name: string:255
+    email: string:255
+    phone: string:50 nullable
+    role_on_production: string:255
+    share_code: string:255 unique
+    softDeletes
+    relationships:
+      hasMany: Response
+
+  ItineraryItem:
+    trip_id: id foreign onDelete:cascade
+    date: date
+    time: time nullable
+    title: string:255
+    description: text nullable
+    location: string:255 nullable
+    type: enum:flight,accommodation,activity,meal,transport,call-time,other
+    assigned_traveler_ids: json nullable
+    document_ids: json nullable
+    softDeletes
+    relationships:
+      hasMany: ItineraryTask, Response
+
+  ItineraryTask:
+    itinerary_item_id: id foreign onDelete:cascade
+    title: string:255
+    done: boolean default:false
+
+  Document:
+    trip_id: id foreign onDelete:cascade
+    name: string:255
+    url: string:500
+    type: string:100
+    assigned_traveler_ids: json nullable
+    pinned: boolean default:false
+
+  Response:
+    itinerary_item_id: id foreign onDelete:cascade
+    traveler_id: id foreign onDelete:cascade
+    status: enum:pending,confirmed,declined default:pending
+    responded_at: timestamp nullable
+    indexes:
+      - unique: itinerary_item_id, traveler_id
+
+  NotificationLog:
+    trip_id: id foreign onDelete:cascade
+    itinerary_item_id: id foreign onDelete:cascade
+    traveler_id: id foreign onDelete:cascade
+    channel: enum:email,telegram
+    sent_at: timestamp
+    message_preview: text
