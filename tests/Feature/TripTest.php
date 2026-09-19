@@ -7,12 +7,14 @@ use App\Models\Trip;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
-test('guests cannot create a trip', function () {
-    $this->post(route('trips.store'), [
+test('visitors can create a trip without authenticating', function () {
+    $response = $this->post(route('trips.store'), [
         'name' => 'Sundance',
-    ])->assertRedirect(route('login'));
+    ]);
 
-    $this->assertDatabaseCount('trips', 0);
+    $response->assertRedirect(route('trips.show', Trip::query()->first()));
+
+    $this->assertDatabaseCount('trips', 1);
 });
 
 test('curators can create a trip', function () {

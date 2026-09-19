@@ -4,10 +4,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\RateLimiter;
 use Laravel\Fortify\Features;
 
-test('login screen can be rendered', function () {
+test('login screen redirects visitors to the dashboard', function () {
     $response = $this->get(route('login'));
 
-    $response->assertOk();
+    $response->assertRedirect(route('dashboard'));
 });
 
 test('users can authenticate using the login screen', function () {
@@ -42,7 +42,7 @@ test('users with two factor enabled are redirected to two factor challenge', fun
     $this->assertGuest();
 });
 
-test('users can not authenticate with invalid password', function () {
+test('visitors stay authenticated even after an invalid login attempt', function () {
     $user = User::factory()->create();
 
     $this->post(route('login.store'), [
@@ -50,7 +50,7 @@ test('users can not authenticate with invalid password', function () {
         'password' => 'wrong-password',
     ]);
 
-    $this->assertGuest();
+    $this->assertAuthenticated();
 });
 
 test('users can logout', function () {

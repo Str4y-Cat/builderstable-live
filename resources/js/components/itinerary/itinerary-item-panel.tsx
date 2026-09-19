@@ -3,11 +3,22 @@ import { Plus, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { ResponseRollup } from '@/components/features/response-rollup';
 import { EventDocumentsPicker } from '@/components/itinerary/event-documents-picker';
-import { TravelerAssignPicker } from '@/components/travelers/traveler-assign-picker';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import {
+    Combobox,
+    ComboboxChip,
+    ComboboxChips,
+    ComboboxChipsInput,
+    ComboboxContent,
+    ComboboxEmpty,
+    ComboboxItem,
+    ComboboxList,
+    ComboboxValue,
+    useComboboxAnchor,
+} from '@/components/ui/combobox';
 import { Input } from '@/components/ui/input';
 import {
     Sheet,
@@ -59,6 +70,7 @@ export function ItineraryItemPanel({
 }) {
     const [newTaskTitle, setNewTaskTitle] = useState('');
     const [crewPickerOpen, setCrewPickerOpen] = useState(false);
+    const crewAnchor = useComboboxAnchor();
 
     useEffect(() => {
         setNewTaskTitle('');
@@ -93,6 +105,11 @@ export function ItineraryItemPanel({
         traveler,
         status: (getResponse(trip, item.id, traveler.id)?.status ??
             'pending') as ResponseStatus,
+    }));
+    const travelersById = new Map(trip.travelers.map((traveler) => [traveler.id, traveler]));
+    const crewItems = trip.travelers.map((traveler) => ({
+        label: `${traveler.name} ${traveler.roleOnProduction}`,
+        value: traveler.id,
     }));
 
     function patchItem(payload: {
@@ -285,15 +302,89 @@ export function ItineraryItemPanel({
                             </div>
                         </div>
                         {crewPickerOpen ? (
-                            <div className="rounded-lg border p-3">
-                                <TravelerAssignPicker
-                                    travelers={trip.travelers}
+                            <div className="space-y-2">
+                                <Combobox
+                                    multiple
+                                    autoHighlight
+                                    items={crewItems}
                                     value={currentItem.assignedTravelerIds}
-                                    onChange={(ids) =>
-                                        patchItem({ assigned_traveler_ids: ids })
+                                    onValueChange={(values) =>
+                                        patchItem({ assigned_traveler_ids: [...values] })
                                     }
-                                    hint="First selection switches this event from 'All travelers' to a specific list. Deselecting all returns to 'All travelers'."
-                                />
+                                >
+                                    <ComboboxChips ref={crewAnchor} className="w-full">
+                                        <ComboboxValue>
+                                            {(values) => {
+                                                const selected = Array.isArray(values)
+                                                    ? values
+                                                    : [];
+
+                                                return (
+                                                    <>
+                                                        {selected.map((value) => {
+                                                            const traveler = travelersById.get(
+                                                                Number(value),
+                                                            );
+
+                                                            return (
+                                                                <ComboboxChip
+                                                                    key={String(value)}
+                                                                >
+                                                                    {traveler?.name ??
+                                                                        String(value)}
+                                                                </ComboboxChip>
+                                                            );
+                                                        })}
+                                                        <ComboboxChipsInput
+                                                            placeholder={
+                                                                selected.length === 0
+                                                                    ? 'All travelers (default)'
+                                                                    : 'Add crew…'
+                                                            }
+                                                        />
+                                                    </>
+                                                );
+                                            }}
+                                        </ComboboxValue>
+                                    </ComboboxChips>
+                                    <ComboboxContent anchor={crewAnchor}>
+                                        <ComboboxEmpty>No crew found.</ComboboxEmpty>
+                                        <ComboboxList>
+                                            {(item) => {
+                                                const traveler = travelersById.get(
+                                                    Number(item.value),
+                                                );
+
+                                                return (
+                                                    <ComboboxItem
+                                                        key={String(item.value)}
+                                                        value={item.value}
+                                                    >
+                                                        {traveler ? (
+                                                            <>
+                                                                <span className="font-medium">
+                                                                    {traveler.name}
+                                                                </span>
+                                                                <span className="text-muted-foreground">
+                                                                    {' '}
+                                                                    ·{' '}
+                                                                    {traveler.roleOnProduction}
+                                                                </span>
+                                                            </>
+                                                        ) : (
+                                                            String(item.label)
+                                                        )}
+                                                    </ComboboxItem>
+                                                );
+                                            }}
+                                        </ComboboxList>
+                                    </ComboboxContent>
+                                </Combobox>
+                                <p className="text-xs text-muted-foreground">
+                                    First selection switches this event from 'All travelers'
+                                    to a specific list. Deselecting all returns to 'All
+                                    travelers'.
+                                </p>
                             </div>
                         ) : null}
                         {crewRows.length ? (
