@@ -105,8 +105,10 @@ class Trip extends Model
             'name' => $this->name,
             'destination' => $this->destination,
             'dateRange' => $this->derivedDateRange(),
+            'description' => $this->description,
             'badge' => $this->badge->value,
             'tags' => collect($this->tags)->map(fn (mixed $tag): string => $tag instanceof TripTag ? $tag->value : (string) $tag)->values()->all(),
+            'autoNotifyOnAssign' => $this->auto_notify_on_assign,
             'travelerCount' => (int) ($this->getAttribute('travelers_count') ?? $this->travelers->count()),
             'itemCount' => (int) ($this->getAttribute('itinerary_items_count') ?? $this->itineraryItems->count()),
         ];
