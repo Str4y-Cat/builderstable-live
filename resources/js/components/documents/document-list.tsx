@@ -13,6 +13,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { destroy, update } from '@/routes/trips/documents';
 import type { Document, Trip } from '@/types/trip';
 
@@ -86,17 +87,22 @@ export function DocumentList({
                             ) : null}
                         </button>
                         {trip ? (
-                            <Button
-                                size="sm"
-                                className="shrink-0"
-                                onClick={() => {
-                                    setEditingDoc(null);
-                                    setFormOpen(true);
-                                }}
-                            >
-                                <Plus className="h-4 w-4" />
-                                Add
-                            </Button>
+                            <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    size="icon-sm"
+                                    className="shrink-0"
+                                    onClick={() => {
+                                        setEditingDoc(null);
+                                        setFormOpen(true);
+                                    }}
+                                >
+                                    <Plus className="h-4 w-4" />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>Add new document</TooltipContent>
+                        </Tooltip>
                         ) : null}
                     </div>
                     {open ? <div className="space-y-3 border-t px-4 py-3">{entries}</div> : null}

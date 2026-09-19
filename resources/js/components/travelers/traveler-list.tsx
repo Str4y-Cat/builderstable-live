@@ -12,6 +12,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { destroy } from '@/routes/trips/travelers';
 import type { Traveler, Trip } from '@/types/trip';
 
@@ -39,14 +40,19 @@ export function TravelerList({ trip }: { trip: Trip }) {
                         {trip.travelers.length}
                     </span>
                 </button>
-                <Button
-                    size="sm"
-                    className="shrink-0"
-                    onClick={() => setFormOpen(true)}
-                >
-                    <Plus className="h-4 w-4" />
-                    Add traveler
-                </Button>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button
+                            variant="ghost"
+                            size="icon-sm"
+                            className="shrink-0"
+                            onClick={() => setFormOpen(true)}
+                        >
+                            <Plus className="h-4 w-4" />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Add new traveler</TooltipContent>
+                </Tooltip>
             </div>
             {open ? (
                 <div className="space-y-3 border-t px-4 py-3">
