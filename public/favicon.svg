@@ -1,34 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <!-- TellMe favicon: folded map + route + departing plane -->
-  <rect width="32" height="32" rx="6" fill="#0a0a0a"/>
+  <rect width="32" height="32" rx="7" fill="#0a0a0a"/>
 
-  <!-- Left map panel -->
-  <rect x="6" y="9.5" width="9.2" height="15" rx="1.6" fill="#52525b" fill-opacity="0.55"/>
-  <!-- Right map panel -->
-  <rect x="15.8" y="9.5" width="9.2" height="15" rx="1.6" fill="#52525b" fill-opacity="0.4"/>
-  <!-- Fold edge highlight -->
-  <path d="M15.5,10.2 L15.5,23.8" stroke="rgba(255,255,255,0.12)" stroke-width="0.6"/>
+  <!-- Folded map: two panels with sharp V peaks (accordion fold) -->
+  <path
+    d="M6.2 10.8
+       L11.6 7.0
+       L16.0 10.2
+       L20.4 7.0
+       L25.8 10.8
+       L25.8 21.2
+       L20.4 25.0
+       L16.0 21.8
+       L11.6 25.0
+       L6.2 21.2
+       Z"
+    fill="#3f3f46"
+  />
+  <!-- Center fold shadow -->
+  <path d="M16 10.2 L16 21.8" stroke="#0a0a0a" stroke-width="1.15" stroke-linecap="round" opacity="0.5"/>
 
   <!-- Route -->
   <path
-    d="M9.2,21.8 L13.6,16.6 L19.8,12.8 L24.2,9.2"
+    d="M8.4 21.4 L13.0 16.0 L19.2 13.2 L23.4 9.6"
     fill="none"
     stroke="#fafafa"
-    stroke-width="1.55"
+    stroke-width="1.6"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
 
   <!-- Waypoints -->
-  <circle cx="13.6" cy="16.6" r="1.7" fill="#fafafa"/>
-  <circle cx="13.6" cy="16.6" r="0.75" fill="#18181b"/>
-  <circle cx="19.8" cy="12.8" r="1.7" fill="#fafafa"/>
-  <circle cx="19.8" cy="12.8" r="0.75" fill="#18181b"/>
+  <circle cx="13.0" cy="16.0" r="1.9" fill="#fafafa"/>
+  <circle cx="13.0" cy="16.0" r="0.9" fill="#3f3f46"/>
+  <circle cx="19.2" cy="13.2" r="1.9" fill="#fafafa"/>
+  <circle cx="19.2" cy="13.2" r="0.9" fill="#3f3f46"/>
 
-  <!-- Plane -->
-  <path
-    d="M0,-2.15 L4.2,0 L0,2.15 L0.75,0.5 L-2.2,0.5 L-2.2,-0.5 L0.75,-0.5 Z"
-    transform="translate(25.2,8.4) rotate(-38)"
-    fill="#fafafa"
-  />
+  <!-- Airplane (wings + fuselage, nose toward top-right) -->
+  <g transform="translate(24.6 8.7) rotate(-42)">
+    <path
+      d="M4.8 0
+         L0.2 -1.15
+         L-0.15 -2.55
+         L-0.85 -2.55
+         L-0.55 -1.15
+         L-2.7 -0.55
+         L-2.7 0.55
+         L-0.55 1.15
+         L-0.85 2.55
+         L-0.15 2.55
+         L0.2 1.15
+         Z"
+      fill="#fafafa"
+    />
+  </g>
 </svg>
