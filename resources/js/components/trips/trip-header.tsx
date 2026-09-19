@@ -1,9 +1,18 @@
 import { router } from '@inertiajs/react';
-import { ChevronDown, Download, ExternalLink } from 'lucide-react';
+import { ChevronDown, Download, ExternalLink, Settings } from 'lucide-react';
+import { useState } from 'react';
 import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { ButtonGroup } from '@/components/ui/button-group';
 import { Checkbox } from '@/components/ui/checkbox';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -29,6 +38,7 @@ export function TripHeader({ trip }: { trip: Trip }) {
     );
     const firstShareCode = trip.travelers[0]?.shareCode;
     const datesDerived = isDateRangeDerived(trip);
+    const [settingsOpen, setSettingsOpen] = useState(false);
 
     function onAutoNotifyChange(checked: boolean | 'indeterminate') {
         if (checked === 'indeterminate') {
@@ -60,7 +70,8 @@ export function TripHeader({ trip }: { trip: Trip }) {
     }
 
     return (
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0 space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
                     {trip.tags.map((tag) => (
@@ -98,6 +109,49 @@ export function TripHeader({ trip }: { trip: Trip }) {
                     ) : null}
                     <Badge variant="outline">{pendingCount} pending</Badge>
                 </div>
+            </div>
+            <div className="flex shrink-0">
+                <ButtonGroup aria-label="Trip actions">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline">
+                                Actions
+                                <ChevronDown className="h-4 w-4" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-52">
+                            <DropdownMenuItem onSelect={downloadPdf}>
+                                <Download className="h-4 w-4" />
+                                Download PDF
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                disabled={!firstShareCode}
+                                onSelect={previewTraveler}
+                            >
+                                <ExternalLink className="h-4 w-4" />
+                                Preview traveler view
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        aria-label="Trip settings"
+                        onClick={() => setSettingsOpen(true)}
+                    >
+                        <Settings className="h-4 w-4" />
+                    </Button>
+                </ButtonGroup>
+            </div>
+        </div>
+        <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
+            <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                    <DialogTitle>Trip settings</DialogTitle>
+                    <DialogDescription>
+                        Manage how this trip behaves.
+                    </DialogDescription>
+                </DialogHeader>
                 <label className="flex max-w-md cursor-pointer items-start gap-2 rounded-lg border px-3 py-2 text-sm">
                     <Checkbox
                         className="mt-0.5"
@@ -112,30 +166,8 @@ export function TripHeader({ trip }: { trip: Trip }) {
                         </span>
                     </span>
                 </label>
-            </div>
-            <div className="flex shrink-0">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
-                            Actions
-                            <ChevronDown className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-52">
-                        <DropdownMenuItem onSelect={downloadPdf}>
-                            <Download className="h-4 w-4" />
-                            Download PDF
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            disabled={!firstShareCode}
-                            onSelect={previewTraveler}
-                        >
-                            <ExternalLink className="h-4 w-4" />
-                            Preview traveler view
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-        </div>
+            </DialogContent>
+        </Dialog>
+        </>
     );
 }
