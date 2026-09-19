@@ -1,8 +1,9 @@
 import { router } from '@inertiajs/react';
-import { X } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { ResponseRollup } from '@/components/features/response-rollup';
 import { EventDocumentsPicker } from '@/components/itinerary/event-documents-picker';
+import { TravelerAssignPicker } from '@/components/travelers/traveler-assign-picker';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -57,9 +58,11 @@ export function ItineraryItemPanel({
     onNotify: (item: ItineraryItem) => void;
 }) {
     const [newTaskTitle, setNewTaskTitle] = useState('');
+    const [crewPickerOpen, setCrewPickerOpen] = useState(false);
 
     useEffect(() => {
         setNewTaskTitle('');
+        setCrewPickerOpen(false);
     }, [item?.id]);
 
     if (!item) {
@@ -95,6 +98,7 @@ export function ItineraryItemPanel({
     function patchItem(payload: {
         tasks?: { id?: number; title: string; done: boolean }[];
         document_ids?: number[];
+        assigned_traveler_ids?: number[];
     }) {
         router.patch(update.url([trip.id, currentItem.id]), payload, {
             preserveScroll: true,
@@ -265,8 +269,33 @@ export function ItineraryItemPanel({
                             <h3 className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
                                 Crew responses
                             </h3>
-                            <ResponseRollup trip={trip} item={item} />
+                            <div className="flex items-center gap-2">
+                                {trip.travelers.length ? (
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="-mr-2 h-7 px-2 text-muted-foreground"
+                                        onClick={() => setCrewPickerOpen((open) => !open)}
+                                    >
+                                        <Plus className="h-3.5 w-3.5" />
+                                        {crewPickerOpen ? 'Hide' : 'Add crew'}
+                                    </Button>
+                                ) : null}
+                                <ResponseRollup trip={trip} item={item} />
+                            </div>
                         </div>
+                        {crewPickerOpen ? (
+                            <div className="rounded-lg border p-3">
+                                <TravelerAssignPicker
+                                    travelers={trip.travelers}
+                                    value={currentItem.assignedTravelerIds}
+                                    onChange={(ids) =>
+                                        patchItem({ assigned_traveler_ids: ids })
+                                    }
+                                    hint="First selection switches this event from 'All travelers' to a specific list. Deselecting all returns to 'All travelers'."
+                                />
+                            </div>
+                        ) : null}
                         {crewRows.length ? (
                             <ul className="divide-y rounded-lg border">
                                 {crewRows.map((row) => (

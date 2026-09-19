@@ -58,6 +58,8 @@ class ItineraryItemController extends Controller
     {
         Gate::authorize('update', $trip);
 
+        $this->sendDeletionNotices($trip, $itineraryItem);
+
         $itineraryItem->delete();
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Itinerary item deleted.')]);
@@ -164,6 +166,36 @@ class ItineraryItemController extends Controller
             ]);
 
             Telegraph::chat($chat)->html($text)->keyboard($keyboard)->send();
+        }
+    }
+
+    private function sendDeletionNotices(Trip $trip, ItineraryItem $item): void
+    {
+        $chat = TelegraphBot::query()->first()?->chats()->first();
+
+        if ($chat === null) {
+            return;
+        }
+
+        $assignedIds = $item->assigned_traveler_ids ?? [];
+
+        $travelers = $assignedIds === []
+            ? $trip->travelers()->get()
+            : $trip->travelers()->whereKey($assignedIds)->get();
+
+        foreach ($travelers as $traveler) {
+            $dateLabel = $item->date?->toDateString();
+
+            $text = sprintf(
+                '%s: <b>%s</b>, the itinerary item %s%s%s has been deleted.',
+                e($trip->name),
+                e($traveler->name),
+                e($item->title),
+                $dateLabel !== null ? " on {$dateLabel}" : '',
+                $item->time !== null ? " at {$item->time}" : '',
+            );
+
+            Telegraph::chat($chat)->html($text)->send();
         }
     }
 }

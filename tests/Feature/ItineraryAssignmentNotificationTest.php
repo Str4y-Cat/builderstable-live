@@ -6,16 +6,6 @@ use App\Models\Traveler;
 use App\Models\Trip;
 use App\Models\User;
 use DefStudio\Telegraph\Facades\Telegraph;
-use DefStudio\Telegraph\Models\TelegraphBot;
-use DefStudio\Telegraph\Models\TelegraphChat;
-
-function telegram_connected_bot(): TelegraphBot
-{
-    $bot = TelegraphBot::factory()->create(['token' => 'test-bot-token']);
-    TelegraphChat::factory()->for($bot, 'bot')->create(['chat_id' => '123456789']);
-
-    return $bot;
-}
 
 function itinerary_assign_payload(array $overrides = []): array
 {
