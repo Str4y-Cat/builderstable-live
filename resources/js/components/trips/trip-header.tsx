@@ -1,5 +1,5 @@
 import { router } from '@inertiajs/react';
-import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
+import { Download, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -10,9 +10,8 @@ import {
     responseRollup,
     taskProgress,
 } from '@/lib/tripHelpers';
-import { tripBadgeClass, tripBadgeLabel, tripTagLabel } from '@/lib/tripLabels';
+import { tripTagLabel } from '@/lib/tripLabels';
 import { downloadTripPdf } from '@/lib/tripPdf';
-import { dashboard } from '@/routes';
 import { share, update } from '@/routes/trips';
 import type { Trip } from '@/types/trip';
 
@@ -58,9 +57,6 @@ export function TripHeader({ trip }: { trip: Trip }) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0 space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
-                    <Badge className={tripBadgeClass[trip.badge]}>
-                        {tripBadgeLabel[trip.badge]}
-                    </Badge>
                     {trip.tags.map((tag) => (
                         <Badge key={tag} variant="outline" className="font-normal">
                             {tripTagLabel[tag]}
@@ -112,10 +108,6 @@ export function TripHeader({ trip }: { trip: Trip }) {
                 </label>
             </div>
             <div className="flex shrink-0 flex-wrap gap-2">
-                <Button variant="outline" onClick={() => router.visit(dashboard.url())}>
-                    <ArrowLeft className="h-4 w-4" />
-                    Back to trips
-                </Button>
                 <Button variant="outline" onClick={downloadPdf}>
                     <Download className="h-4 w-4" />
                     Download PDF
