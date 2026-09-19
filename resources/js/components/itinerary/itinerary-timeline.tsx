@@ -49,7 +49,7 @@ export function ItineraryTimeline({
 
     return (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
-            <aside className="w-full shrink-0 rounded-xl border bg-muted/20 p-3 sm:sticky sm:top-4 sm:w-44 lg:w-48">
+            <aside className="w-full shrink-0 sm:sticky sm:top-4 sm:w-44 lg:w-48">
                 <ItineraryProgress trip={trip} onSelect={onSelect} />
             </aside>
             <div className="min-w-0 flex-1 space-y-6">

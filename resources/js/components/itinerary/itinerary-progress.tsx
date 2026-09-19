@@ -1,3 +1,5 @@
+import { ChevronDown } from 'lucide-react';
+import { useState } from 'react';
 import {
     areEventTasksComplete,
     eventTaskProgress,
@@ -13,6 +15,7 @@ export function ItineraryProgress({
     trip: Trip;
     onSelect: (item: ItineraryItem) => void;
 }) {
+    const [open, setOpen] = useState(true);
     const overall = taskProgress(trip);
     const percent = overall.total
         ? Math.round((overall.done / overall.total) * 100)
@@ -41,79 +44,91 @@ export function ItineraryProgress({
         });
 
     return (
-        <nav className="space-y-4" aria-label="Itinerary task progress">
-            <div className="space-y-1.5">
-                <div className="flex items-baseline justify-between gap-2">
-                    <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                        Progress
-                    </p>
-                    <p className="text-xs text-muted-foreground tabular-nums">
-                        {overall.total ? `${overall.done}/${overall.total}` : 'No tasks'}
-                    </p>
-                </div>
-                <div
-                    className="h-1.5 overflow-hidden rounded-full bg-muted"
-                    title={overallTitle}
-                    role="progressbar"
-                    aria-valuenow={overall.done}
-                    aria-valuemin={0}
-                    aria-valuemax={overall.total || 0}
-                    aria-label={overallTitle}
+        <section className="rounded-xl border" aria-label="Itinerary task progress">
+            <div className="flex flex-wrap items-center gap-2 px-4 py-3">
+                <button
+                    type="button"
+                    className="flex min-w-0 flex-1 items-center gap-2 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    aria-expanded={open}
+                    onClick={() => setOpen(!open)}
                 >
-                    <div
-                        className="h-full rounded-full bg-primary transition-[width] duration-300"
-                        style={{ width: `${percent}%` }}
+                    <ChevronDown
+                        className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${
+                            open ? 'rotate-180' : ''
+                        }`}
                     />
-                </div>
+                    <h2 className="text-lg font-semibold">Progress</h2>
+                    <span className="text-sm text-muted-foreground tabular-nums">
+                        {percent}%
+                    </span>
+                </button>
             </div>
-            {steps.length ? (
-                <ol className="relative space-y-0">
-                    {steps.map((step, index) => (
-                        <li
-                            key={step.item.id}
-                            className="relative flex gap-2 pb-4 last:pb-0"
-                        >
-                            {index < steps.length - 1 ? (
-                                <div className="absolute top-4 bottom-0 left-[7px] w-px bg-border" />
-                            ) : null}
-                            <button
-                                type="button"
-                                className={`relative z-[1] flex min-w-0 flex-1 items-start gap-2 rounded-md px-1 py-0.5 text-left outline-none transition-colors hover:bg-muted/60 focus-visible:ring-2 focus-visible:ring-ring ${
-                                    step.tasksComplete
-                                        ? 'ring-2 ring-foreground ring-offset-1 ring-offset-background'
-                                        : ''
-                                }`}
-                                onClick={() => onSelect(step.item)}
-                            >
-                                <span
-                                    className={`mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border-2 bg-background ${dotClass(step)}`}
-                                />
-                                <span className="min-w-0 flex-1 pb-0.5">
-                                    <span
-                                        className={`block truncate text-xs leading-snug font-medium ${
-                                            step.timeElapsed
-                                                ? 'text-muted-foreground line-through'
+            {open ? (
+                <div className="space-y-4 border-t px-4 py-3">
+                    <div
+                        className="h-1.5 overflow-hidden rounded-full bg-muted"
+                        title={overallTitle}
+                        role="progressbar"
+                        aria-valuenow={overall.done}
+                        aria-valuemin={0}
+                        aria-valuemax={overall.total || 0}
+                        aria-label={overallTitle}
+                    >
+                        <div
+                            className="h-full rounded-full bg-primary transition-[width] duration-300"
+                            style={{ width: `${percent}%` }}
+                        />
+                    </div>
+                    {steps.length ? (
+                        <ol className="relative space-y-0">
+                            {steps.map((step, index) => (
+                                <li
+                                    key={step.item.id}
+                                    className="relative flex gap-2 pb-4 last:pb-0"
+                                >
+                                    {index < steps.length - 1 ? (
+                                        <div className="absolute top-4 bottom-0 left-[7px] w-px bg-border" />
+                                    ) : null}
+                                    <button
+                                        type="button"
+                                        className={`relative z-[1] flex min-w-0 flex-1 items-start gap-2 rounded-md px-1 py-0.5 text-left outline-none transition-colors hover:bg-muted/60 focus-visible:ring-2 focus-visible:ring-ring ${
+                                            step.tasksComplete
+                                                ? 'ring-2 ring-foreground ring-offset-1 ring-offset-background'
                                                 : ''
                                         }`}
+                                        onClick={() => onSelect(step.item)}
                                     >
-                                        {step.item.title}
-                                    </span>
-                                    <span className="mt-0.5 block text-[11px] text-muted-foreground tabular-nums">
-                                        {step.progress.total
-                                            ? `${step.progress.done}/${step.progress.total}`
-                                            : 'No sub-tasks'}
-                                        {step.tasksComplete ? ' · tasks done' : ''}
-                                        {step.timeElapsed ? ' · elapsed' : ''}
-                                    </span>
-                                </span>
-                            </button>
-                        </li>
-                    ))}
-                </ol>
-            ) : (
-                <p className="text-xs text-muted-foreground">No events yet</p>
-            )}
-        </nav>
+                                        <span
+                                            className={`mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border-2 bg-background ${dotClass(step)}`}
+                                        />
+                                        <span className="min-w-0 flex-1 pb-0.5">
+                                            <span
+                                                className={`block truncate text-xs leading-snug font-medium ${
+                                                    step.timeElapsed
+                                                        ? 'text-muted-foreground line-through'
+                                                        : ''
+                                                }`}
+                                            >
+                                                {step.item.title}
+                                            </span>
+                                            <span className="mt-0.5 block text-[11px] text-muted-foreground tabular-nums">
+                                                {step.progress.total
+                                                    ? `${step.progress.done}/${step.progress.total}`
+                                                    : 'No sub-tasks'}
+                                                {step.tasksComplete ? ' · tasks done' : ''}
+                                                {step.timeElapsed ? ' · elapsed' : ''}
+                                            </span>
+                                        </span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ol>
+                    ) : (
+                        <p className="text-xs text-muted-foreground">No events yet</p>
+                    )}
+                </div>
+            ) : null}
+        </section>
     );
 }
 

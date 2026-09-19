@@ -6,6 +6,10 @@ use App\Http\Requests\StoreItineraryItemRequest;
 use App\Http\Requests\UpdateItineraryItemRequest;
 use App\Models\ItineraryItem;
 use App\Models\Trip;
+use DefStudio\Telegraph\Facades\Telegraph;
+use DefStudio\Telegraph\Keyboard\Button;
+use DefStudio\Telegraph\Keyboard\Keyboard;
+use DefStudio\Telegraph\Models\TelegraphBot;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
@@ -18,6 +22,8 @@ class ItineraryItemController extends Controller
 
         $this->syncTasks($item, $request->validated('tasks') ?? []);
 
+        $this->sendAssignmentInvites($trip, $item, $request->validated('assigned_traveler_ids') ?? []);
+
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Itinerary item added.')]);
 
         return to_route('trips.show', $trip);
@@ -27,7 +33,17 @@ class ItineraryItemController extends Controller
     {
         $validated = $request->validated();
 
+        $previousAssignedIds = $itineraryItem->assigned_traveler_ids ?? [];
+
         $itineraryItem->update($this->itemAttributes($validated, creating: false));
+
+        if (array_key_exists('assigned_traveler_ids', $validated)) {
+            $this->sendAssignmentInvites(
+                $trip,
+                $itineraryItem,
+                array_values(array_diff($validated['assigned_traveler_ids'], $previousAssignedIds)),
+            );
+        }
 
         if (array_key_exists('tasks', $validated)) {
             $this->syncTasks($itineraryItem, $validated['tasks'] ?? []);
@@ -98,5 +114,56 @@ class ItineraryItemController extends Controller
         }
 
         $item->itineraryTasks()->whereNotIn('id', $keep)->delete();
+    }
+
+    /**
+     * @param  list<int>  $addedTravelerIds
+     */
+    private function sendAssignmentInvites(Trip $trip, ItineraryItem $item, array $addedTravelerIds): void
+    {
+        if (! $trip->auto_notify_on_assign || $addedTravelerIds === []) {
+            return;
+        }
+
+        $chat = TelegraphBot::query()->first()?->chats()->first();
+
+        if ($chat === null) {
+            return;
+        }
+
+        $travelers = $trip->travelers()
+            ->whereKey($addedTravelerIds)
+            ->get()
+            ->keyBy('id');
+
+        foreach ($addedTravelerIds as $travelerId) {
+            $traveler = $travelers->get($travelerId);
+
+            if ($traveler === null) {
+                continue;
+            }
+
+            $dateLabel = $item->date?->toDateString();
+
+            $text = sprintf(
+                '%s invites <b>%s</b> to %s%s%s. Please confirm or decline.',
+                e($trip->name),
+                e($traveler->name),
+                e($item->title),
+                $dateLabel !== null ? " on {$dateLabel}" : '',
+                $item->time !== null ? " at {$item->time}" : '',
+            );
+
+            $keyboard = Keyboard::make()->row([
+                Button::make('Confirm')->action('confirmInvite')
+                    ->param('traveler_id', $traveler->id)
+                    ->param('itinerary_item_id', $item->id),
+                Button::make('Decline')->action('declineInvite')
+                    ->param('traveler_id', $traveler->id)
+                    ->param('itinerary_item_id', $item->id),
+            ]);
+
+            Telegraph::chat($chat)->html($text)->keyboard($keyboard)->send();
+        }
     }
 }

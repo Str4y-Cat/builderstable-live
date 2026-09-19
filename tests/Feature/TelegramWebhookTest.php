@@ -48,7 +48,8 @@ test('the bot lists its commands on /help', function () {
         'Available commands:<br>'
         .'- <code>/start</code> — show the welcome message<br>'
         .'- <code>/chatid</code> — show this chat ID<br>'
-        .'- <code>/help</code> — show this help'
+        .'- <code>/help</code> — show this help<br>'
+        .'When an itinerary item is assigned, use the Confirm / Decline buttons to reply.'
     );
 });
 
