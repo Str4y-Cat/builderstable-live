@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use Database\Factories\ItineraryTaskFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ItineraryTask extends Model
 {
+    /** @use HasFactory<ItineraryTaskFactory> */
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'itinerary_item_id',
@@ -22,16 +22,24 @@ class ItineraryTask extends Model
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
      * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
-            'id' => 'integer',
-            'itinerary_item_id' => 'integer',
             'done' => 'boolean',
+        ];
+    }
+
+    /**
+     * @return array{id: int, title: string, done: bool}
+     */
+    public function toArrayForItem(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'done' => $this->done,
         ];
     }
 

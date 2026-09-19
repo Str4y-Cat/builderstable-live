@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+use App\Enums\NotifyChannel;
+use Database\Factories\NotificationLogFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class NotificationLog extends Model
 {
+    /** @use HasFactory<NotificationLogFactory> */
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'trip_id',
@@ -25,18 +26,13 @@ class NotificationLog extends Model
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
      * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
-            'id' => 'integer',
-            'trip_id' => 'integer',
-            'itinerary_item_id' => 'integer',
-            'traveler_id' => 'integer',
-            'sent_at' => 'timestamp',
+            'channel' => NotifyChannel::class,
+            'sent_at' => 'datetime',
         ];
     }
 

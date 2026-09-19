@@ -2,23 +2,27 @@
 
 namespace Database\Factories;
 
+use App\Models\Document;
 use App\Models\Trip;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Document>
+ */
 class DocumentFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
             'trip_id' => Trip::factory(),
-            'name' => fake()->name(),
+            'name' => fake()->words(3, true).'.pdf',
             'url' => fake()->url(),
-            'type' => fake()->regexify('[A-Za-z0-9]{100}'),
-            'assigned_traveler_ids' => '{}',
-            'pinned' => fake()->boolean(),
+            'type' => 'application/pdf',
+            'assigned_traveler_ids' => [],
+            'pinned' => false,
         ];
     }
 }

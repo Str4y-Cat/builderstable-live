@@ -2,26 +2,34 @@
 
 namespace Database\Factories;
 
+use App\Enums\TripBadge;
+use App\Enums\TripTag;
+use App\Models\Trip;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Trip>
+ */
 class TripFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * @return array<string, mixed>
      */
     public function definition(): array
     {
+        $startDate = fake()->dateTimeBetween('now', '+2 months');
+
         return [
             'user_id' => User::factory(),
-            'name' => fake()->name(),
-            'destination' => fake()->regexify('[A-Za-z0-9]{255}'),
-            'start_date' => fake()->date(),
-            'end_date' => fake()->date(),
-            'description' => fake()->text(),
-            'badge' => fake()->randomElement(['planning', 'locked', 'on-hold', 'wrap']),
-            'tags' => '{}',
-            'auto_notify_on_assign' => fake()->boolean(),
+            'name' => fake()->words(3, true),
+            'destination' => fake()->city(),
+            'start_date' => $startDate,
+            'end_date' => fake()->dateTimeBetween($startDate, '+3 months'),
+            'description' => fake()->sentence(),
+            'badge' => fake()->randomElement(TripBadge::cases()),
+            'tags' => fake()->randomElements(TripTag::cases(), 2),
+            'auto_notify_on_assign' => false,
         ];
     }
 }

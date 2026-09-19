@@ -2,15 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Enums\NotifyChannel;
 use App\Models\ItineraryItem;
+use App\Models\NotificationLog;
 use App\Models\Traveler;
 use App\Models\Trip;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<NotificationLog>
+ */
 class NotificationLogFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * @return array<string, mixed>
      */
     public function definition(): array
     {
@@ -18,9 +23,9 @@ class NotificationLogFactory extends Factory
             'trip_id' => Trip::factory(),
             'itinerary_item_id' => ItineraryItem::factory(),
             'traveler_id' => Traveler::factory(),
-            'channel' => fake()->randomElement(['email', 'telegram']),
+            'channel' => fake()->randomElement(NotifyChannel::cases()),
             'sent_at' => fake()->dateTime(),
-            'message_preview' => fake()->text(),
+            'message_preview' => fake()->sentence(),
         ];
     }
 }
