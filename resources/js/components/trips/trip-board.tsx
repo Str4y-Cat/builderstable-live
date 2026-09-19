@@ -16,8 +16,8 @@ export function TripBoard({ trips }: { trips: TripSummary[] }) {
     }));
 
     return (
-        <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="flex min-w-[48rem] gap-4 lg:min-w-0 lg:grid lg:grid-cols-3">
+        <div className="-mx-4 flex-1 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div className="flex min-h-full min-w-[48rem] gap-4 lg:min-w-0 lg:grid lg:grid-cols-3 lg:auto-rows-fr">
                 {columns.map((column) => (
                     <section
                         key={column.status}
@@ -36,9 +36,9 @@ export function TripBoard({ trips }: { trips: TripSummary[] }) {
                                 <TripCard key={trip.id} trip={trip} />
                             ))}
                             {column.trips.length === 0 ? (
-                                <p className="rounded-lg border border-dashed px-3 py-8 text-center text-sm text-muted-foreground">
+                                <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed px-3 py-8 text-center text-sm text-muted-foreground">
                                     No {column.label.toLowerCase()} trips
-                                </p>
+                                </div>
                             ) : null}
                         </div>
                     </section>

@@ -1,0 +1,1855 @@
+{
+  "currentUser": {
+    "id": "user-1",
+    "name": "John Doe",
+    "email": "john.doe@framelightmedia.com",
+    "role": "curator",
+    "title": "Production Coordinator",
+    "company": "Framelight Media Agency"
+  },
+  "trips": [
+    {
+      "id": "trip-1",
+      "name": "Sundance Film Festival 2026",
+      "destination": "Park City, Utah",
+      "startDate": "2026-01-23",
+      "endDate": "2026-01-29",
+      "travelers": [
+        {
+          "id": "traveler-1",
+          "name": "Marcus Williams",
+          "email": "marcus.w@framelightmedia.com",
+          "phone": "+1-555-0101",
+          "roleOnProduction": "Director",
+          "shareCode": "marcus-sundance"
+        },
+        {
+          "id": "traveler-2",
+          "name": "Rachel Green",
+          "email": "rachel.green@framelightmedia.com",
+          "phone": "+1-555-0102",
+          "roleOnProduction": "DP",
+          "shareCode": "rachel-sundance"
+        },
+        {
+          "id": "traveler-3",
+          "name": "Sarah Chen",
+          "email": "sarah.chen@framelightmedia.com",
+          "phone": "+1-555-0103",
+          "roleOnProduction": "Producer",
+          "shareCode": "sarah-sundance"
+        },
+        {
+          "id": "traveler-4",
+          "name": "Maya Johnson",
+          "email": "maya.j@framelightmedia.com",
+          "phone": "+1-555-0104",
+          "roleOnProduction": "Talent",
+          "shareCode": "maya-sundance"
+        },
+        {
+          "id": "traveler-5",
+          "name": "Tom Anderson",
+          "email": "tom.anderson@framelightmedia.com",
+          "phone": "+1-555-0105",
+          "roleOnProduction": "Gaffer",
+          "shareCode": "tom-sundance"
+        },
+        {
+          "id": "traveler-6",
+          "name": "Lisa Patel",
+          "email": "lisa.patel@framelightmedia.com",
+          "phone": "+1-555-0106",
+          "roleOnProduction": "1st AD",
+          "shareCode": "lisa-sundance"
+        },
+        {
+          "id": "traveler-7",
+          "name": "Alex Rivera",
+          "email": "alex.r@framelightmedia.com",
+          "phone": "+1-555-0107",
+          "roleOnProduction": "Sound Mixer",
+          "shareCode": "alex-sundance"
+        }
+      ],
+      "itinerary": [
+        {
+          "id": "item-1",
+          "date": "2026-01-23",
+          "time": "08:00",
+          "title": "Flight Departure - LAX to SLC",
+          "description": "Delta DL1234, arrives 13:45 local time",
+          "location": "LAX Airport, Terminal 5",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-2",
+          "date": "2026-01-23",
+          "time": "15:30",
+          "title": "Shuttle to Park City",
+          "description": "Private shuttle from Salt Lake City Airport",
+          "location": "SLC Airport Ground Transportation",
+          "type": "transport",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-3",
+          "date": "2026-01-23",
+          "time": "17:00",
+          "title": "Hotel Check-in",
+          "description": "Park City Peaks Hotel, 2121 Park Avenue",
+          "location": "Park City",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-3-task-1",
+              "title": "Confirm room block under production name",
+              "done": true
+            },
+            {
+              "id": "item-3-task-2",
+              "title": "Distribute room keys to cast/crew",
+              "done": true
+            },
+            {
+              "id": "item-3-task-3",
+              "title": "Post call sheet on lobby board",
+              "done": false
+            }
+          ],
+          "documentIds": [
+            "doc-1",
+            "doc-2"
+          ]
+        },
+        {
+          "id": "item-4",
+          "date": "2026-01-23",
+          "time": "19:00",
+          "title": "Call Time \u2014 Festival Screening Crew",
+          "description": "Collect festival passes and welcome materials",
+          "location": "Festival Box Office",
+          "type": "call-time",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-4-task-1",
+              "title": "Confirm crew call times via Telegram",
+              "done": false
+            },
+            {
+              "id": "item-4-task-2",
+              "title": "Check radio / walkie batteries",
+              "done": false
+            },
+            {
+              "id": "item-4-task-3",
+              "title": "Brief talent on screening Q&A",
+              "done": false
+            }
+          ],
+          "documentIds": [
+            "doc-1"
+          ]
+        },
+        {
+          "id": "item-5",
+          "date": "2026-01-24",
+          "time": "10:00",
+          "title": "Screening: Documentary Premiere",
+          "description": "World premiere screening - Eccles Theater",
+          "location": "Eccles Theater",
+          "type": "activity",
+          "assignedTravelerIds": [
+            "traveler-1",
+            "traveler-2",
+            "traveler-4"
+          ],
+          "lastUpdatedAt": "2026-09-17T15:00:00.000Z",
+          "tasks": [
+            {
+              "id": "item-5-task-1",
+              "title": "Load DCP / media check",
+              "done": false
+            },
+            {
+              "id": "item-5-task-2",
+              "title": "Seat reserved block for guests",
+              "done": false
+            },
+            {
+              "id": "item-5-task-3",
+              "title": "Photo stills for festival recap",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-6",
+          "date": "2026-01-24",
+          "time": "14:00",
+          "title": "Industry Panel: Future of Independent Film",
+          "description": "Panel discussion with industry leaders",
+          "location": "Sundance House",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-7",
+          "date": "2026-01-24",
+          "time": "18:30",
+          "title": "Distributor Meeting: Acquisition Pitch",
+          "description": "Meeting with A24 acquisition team",
+          "location": "Main Street Lounge",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-7-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-7-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-8",
+          "date": "2026-01-25",
+          "time": "11:00",
+          "title": "Screening: Narrative Feature",
+          "description": "Competition film screening",
+          "location": "Library Theater",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-8-task-1",
+              "title": "Tech rehearsal with venue",
+              "done": false
+            },
+            {
+              "id": "item-8-task-2",
+              "title": "Guest list at door",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-9",
+          "date": "2026-01-25",
+          "time": "20:00",
+          "title": "Networking Dinner",
+          "description": "Industry networking event",
+          "location": "High West Distillery",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-10",
+          "date": "2026-01-26",
+          "time": "09:00",
+          "title": "Talent Scout Meetings",
+          "description": "Back-to-back meetings with emerging filmmakers",
+          "location": "Festival Office",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-10-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-10-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-11",
+          "date": "2026-01-27",
+          "time": "15:00",
+          "title": "Screening: Short Films Block",
+          "description": "Curated short film program",
+          "location": "Prospector Theater",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-11-task-1",
+              "title": "Tech rehearsal with venue",
+              "done": false
+            },
+            {
+              "id": "item-11-task-2",
+              "title": "Guest list at door",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-12",
+          "date": "2026-01-28",
+          "time": "16:00",
+          "title": "Awards Ceremony",
+          "description": "Sundance Film Festival Awards",
+          "location": "Basin Recreation Field House",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-13",
+          "date": "2026-01-28",
+          "time": "19:00",
+          "title": "Closing Night Party",
+          "description": "Festival closing celebration",
+          "location": "TAO Park City",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-14",
+          "date": "2026-01-29",
+          "time": "10:00",
+          "title": "Hotel Check-out",
+          "location": "Park City Peaks Hotel",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-14-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-14-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-15",
+          "date": "2026-01-29",
+          "time": "14:00",
+          "title": "Return Flight - SLC to LAX",
+          "description": "Delta DL5678, departs 14:00",
+          "location": "Salt Lake City Airport",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-1",
+          "name": "Festival Schedule & Passes.pdf",
+          "url": "https://drive.google.com/file/d/placeholder-sundance-schedule",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": true
+        },
+        {
+          "id": "doc-2",
+          "name": "Hotel Confirmations",
+          "url": "https://drive.google.com/file/d/placeholder-hotel-conf",
+          "type": "application/pdf",
+          "assignedTravelerIds": [
+            "traveler-1",
+            "traveler-2"
+          ],
+          "pinned": false
+        },
+        {
+          "id": "doc-3",
+          "name": "Flight Itineraries",
+          "url": "https://drive.google.com/file/d/placeholder-flights",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-4",
+          "name": "Meeting Schedule & Contacts",
+          "url": "https://docs.google.com/spreadsheets/d/placeholder-meetings",
+          "type": "spreadsheet",
+          "assignedTravelerIds": [],
+          "pinned": false
+        }
+      ],
+      "responses": [
+        {
+          "itineraryItemId": "item-5",
+          "travelerId": "traveler-1",
+          "status": "confirmed",
+          "respondedAt": "2026-09-17T18:30:00.000Z"
+        },
+        {
+          "itineraryItemId": "item-5",
+          "travelerId": "traveler-2",
+          "status": "declined",
+          "respondedAt": "2026-09-17T18:30:00.000Z"
+        },
+        {
+          "itineraryItemId": "item-5",
+          "travelerId": "traveler-4",
+          "status": "pending"
+        }
+      ],
+      "notificationLogs": [],
+      "description": "Sundance 2026 crew travel and call times for the Framelight premiere week.",
+      "badge": "locked",
+      "tags": [
+        "festival",
+        "multi-city"
+      ],
+      "autoNotifyOnAssign": true
+    },
+    {
+      "id": "trip-2",
+      "name": "Berlin Commercial Shoot",
+      "destination": "Berlin, Germany",
+      "startDate": "2026-09-16",
+      "endDate": "2026-09-20",
+      "travelers": [
+        {
+          "id": "traveler-8",
+          "name": "Sarah Chen",
+          "email": "sarah.chen@framelightmedia.com",
+          "phone": "+1-555-0103",
+          "roleOnProduction": "Director",
+          "shareCode": "sarah-berlin"
+        },
+        {
+          "id": "traveler-9",
+          "name": "Elena Rodriguez",
+          "email": "elena.r@framelightmedia.com",
+          "phone": "+1-555-0108",
+          "roleOnProduction": "DP",
+          "shareCode": "elena-berlin"
+        },
+        {
+          "id": "traveler-10",
+          "name": "James Park",
+          "email": "james.park@framelightmedia.com",
+          "phone": "+1-555-0109",
+          "roleOnProduction": "Producer",
+          "shareCode": "james-berlin"
+        },
+        {
+          "id": "traveler-11",
+          "name": "Tom Anderson",
+          "email": "tom.anderson@framelightmedia.com",
+          "phone": "+1-555-0105",
+          "roleOnProduction": "Talent",
+          "shareCode": "tom-berlin"
+        },
+        {
+          "id": "traveler-12",
+          "name": "Chris Morgan",
+          "email": "chris.m@framelightmedia.com",
+          "phone": "+1-555-0110",
+          "roleOnProduction": "Gaffer",
+          "shareCode": "chris-berlin"
+        },
+        {
+          "id": "traveler-13",
+          "name": "Lisa Patel",
+          "email": "lisa.patel@framelightmedia.com",
+          "phone": "+1-555-0106",
+          "roleOnProduction": "1st AD",
+          "shareCode": "lisa-berlin"
+        },
+        {
+          "id": "traveler-14",
+          "name": "Marcus Williams",
+          "email": "marcus.w@framelightmedia.com",
+          "phone": "+1-555-0101",
+          "roleOnProduction": "Sound Mixer",
+          "shareCode": "marcus-berlin"
+        },
+        {
+          "id": "traveler-15",
+          "name": "David Kim",
+          "email": "david.kim@framelightmedia.com",
+          "phone": "+1-555-0111",
+          "roleOnProduction": "PA",
+          "shareCode": "david-berlin"
+        },
+        {
+          "id": "traveler-16",
+          "name": "Olivia Taylor",
+          "email": "olivia.t@framelightmedia.com",
+          "phone": "+1-555-0112",
+          "roleOnProduction": "Stylist",
+          "shareCode": "olivia-berlin"
+        },
+        {
+          "id": "traveler-17",
+          "name": "Alex Rivera",
+          "email": "alex.r@framelightmedia.com",
+          "phone": "+1-555-0107",
+          "roleOnProduction": "Client Rep",
+          "shareCode": "alex-berlin"
+        },
+        {
+          "id": "traveler-18",
+          "name": "Maya Johnson",
+          "email": "maya.j@framelightmedia.com",
+          "phone": "+1-555-0104",
+          "roleOnProduction": "Editor",
+          "shareCode": "maya-berlin"
+        }
+      ],
+      "itinerary": [
+        {
+          "id": "item-16",
+          "date": "2026-09-16",
+          "time": "07:30",
+          "title": "Flight Departure - JFK to BER",
+          "description": "Lufthansa LH405, arrives 20:45 local time",
+          "location": "JFK Airport, Terminal 1",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-17",
+          "date": "2026-09-16",
+          "time": "22:00",
+          "title": "Hotel Check-in",
+          "description": "Hotel Adlon Kempinski, Unter den Linden 77",
+          "location": "Berlin Mitte",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-17-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-17-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-18",
+          "date": "2026-09-17",
+          "time": "09:00",
+          "title": "Location Scout - Alexanderplatz",
+          "description": "Scout commercial shoot locations with director and DP",
+          "location": "Alexanderplatz, Berlin",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-19",
+          "date": "2026-09-17",
+          "time": "14:00",
+          "title": "Equipment Arrival & Check",
+          "description": "Camera package and lighting equipment delivery",
+          "location": "Production warehouse - Kreuzberg",
+          "type": "transport",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-20",
+          "date": "2026-09-17",
+          "time": "19:00",
+          "title": "Team Dinner",
+          "description": "Welcome dinner with full crew",
+          "location": "Restaurant Tim Raue",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-21",
+          "date": "2026-09-18",
+          "time": "06:00",
+          "title": "Shoot Day 1 - Call Time",
+          "description": "Commercial shoot at Brandenburg Gate (exterior scenes)",
+          "location": "Brandenburg Gate",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-21-task-1",
+              "title": "Send final call sheet",
+              "done": false
+            },
+            {
+              "id": "item-21-task-2",
+              "title": "Confirm transport pickups",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-22",
+          "date": "2026-09-18",
+          "time": "18:00",
+          "title": "Dailies Review Session",
+          "description": "Review Day 1 footage with director and client",
+          "location": "Hotel Conference Room",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-23",
+          "date": "2026-09-19",
+          "time": "07:00",
+          "title": "Shoot Day 2 - Call Time",
+          "description": "Interior scenes at studio",
+          "location": "Studio Babelsberg",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-23-task-1",
+              "title": "Send final call sheet",
+              "done": false
+            },
+            {
+              "id": "item-23-task-2",
+              "title": "Confirm transport pickups",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-24",
+          "date": "2026-09-19",
+          "time": "13:00",
+          "title": "Client Lunch",
+          "description": "Lunch with client stakeholders - mid-shoot check-in",
+          "location": "Nobelhart & Schmutzig",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-25",
+          "date": "2026-09-19",
+          "time": "18:30",
+          "title": "Dailies Review Session",
+          "description": "Review Day 2 footage",
+          "location": "Hotel Conference Room",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-26",
+          "date": "2026-09-20",
+          "time": "08:00",
+          "title": "Shoot Day 3 - Call Time",
+          "description": "Final shots and pickups",
+          "location": "East Side Gallery",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-26-task-1",
+              "title": "Send final call sheet",
+              "done": false
+            },
+            {
+              "id": "item-26-task-2",
+              "title": "Confirm transport pickups",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-27",
+          "date": "2026-09-20",
+          "time": "16:00",
+          "title": "Equipment Wrap & Return",
+          "description": "Pack and return all equipment",
+          "location": "Production warehouse - Kreuzberg",
+          "type": "transport",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-28",
+          "date": "2026-09-20",
+          "time": "19:00",
+          "title": "Wrap Party",
+          "description": "Crew celebration dinner",
+          "location": "Cl\u00e4rchens Ballhaus",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-29",
+          "date": "2026-09-21",
+          "time": "10:00",
+          "title": "Hotel Check-out",
+          "location": "Hotel Adlon Kempinski",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-29-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-29-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-30",
+          "date": "2026-09-21",
+          "time": "14:30",
+          "title": "Return Flight - BER to JFK",
+          "description": "Lufthansa LH406, departs 14:30",
+          "location": "Berlin Brandenburg Airport",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-5",
+          "name": "Berlin Shoot Schedule.pdf",
+          "url": "https://drive.google.com/file/d/placeholder-shoot-schedule",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": true
+        },
+        {
+          "id": "doc-6",
+          "name": "Location Permits",
+          "url": "https://drive.google.com/file/d/placeholder-permits",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-7",
+          "name": "Equipment List",
+          "url": "https://docs.google.com/spreadsheets/d/placeholder-equipment",
+          "type": "spreadsheet",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-8",
+          "name": "Day 1 Call Sheet",
+          "url": "https://drive.google.com/file/d/placeholder-callsheet-1",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-9",
+          "name": "Day 2 Call Sheet",
+          "url": "https://drive.google.com/file/d/placeholder-callsheet-2",
+          "type": "application/pdf",
+          "assignedTravelerIds": [
+            "traveler-8"
+          ],
+          "pinned": false
+        }
+      ],
+      "responses": [],
+      "notificationLogs": [],
+      "description": "Berlin commercial shoot \u2014 ground transport, call times, and hotel block.",
+      "badge": "planning",
+      "tags": [
+        "commercial"
+      ],
+      "autoNotifyOnAssign": true
+    },
+    {
+      "id": "trip-3",
+      "name": "Cannes Film Market 2027",
+      "destination": "Cannes, France",
+      "startDate": "2027-05-17",
+      "endDate": "2027-05-28",
+      "travelers": [
+        {
+          "id": "traveler-19",
+          "name": "Maya Johnson",
+          "email": "maya.j@framelightmedia.com",
+          "phone": "+1-555-0104",
+          "roleOnProduction": "Director",
+          "shareCode": "maya-cannes"
+        },
+        {
+          "id": "traveler-20",
+          "name": "Marcus Williams",
+          "email": "marcus.w@framelightmedia.com",
+          "phone": "+1-555-0101",
+          "roleOnProduction": "DP",
+          "shareCode": "marcus-cannes"
+        },
+        {
+          "id": "traveler-21",
+          "name": "Sarah Chen",
+          "email": "sarah.chen@framelightmedia.com",
+          "phone": "+1-555-0103",
+          "roleOnProduction": "Producer",
+          "shareCode": "sarah-cannes"
+        },
+        {
+          "id": "traveler-22",
+          "name": "Alex Rivera",
+          "email": "alex.r@framelightmedia.com",
+          "phone": "+1-555-0107",
+          "roleOnProduction": "Talent",
+          "shareCode": "alex-cannes"
+        },
+        {
+          "id": "traveler-23",
+          "name": "Rachel Green",
+          "email": "rachel.green@framelightmedia.com",
+          "phone": "+1-555-0102",
+          "roleOnProduction": "Sales Exec",
+          "shareCode": "rachel-cannes"
+        }
+      ],
+      "itinerary": [
+        {
+          "id": "item-31",
+          "date": "2027-05-17",
+          "time": "09:00",
+          "title": "Flight Departure - LAX to NCE",
+          "description": "Air France AF3752, arrives 05:45+1 local time",
+          "location": "LAX Airport, Terminal B",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-32",
+          "date": "2027-05-18",
+          "time": "07:00",
+          "title": "Hotel Check-in",
+          "description": "H\u00f4tel Martinez, 73 Boulevard de la Croisette",
+          "location": "Cannes",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-32-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-32-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-33",
+          "date": "2027-05-18",
+          "time": "10:00",
+          "title": "Market Badge Pickup",
+          "description": "Collect March\u00e9 du Film passes and materials",
+          "location": "Palais des Festivals",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-34",
+          "date": "2027-05-18",
+          "time": "14:00",
+          "title": "Booth Setup",
+          "description": "Set up company booth at film market",
+          "location": "March\u00e9 du Film - Riviera",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-35",
+          "date": "2027-05-19",
+          "time": "09:00",
+          "title": "Buyer Meeting: European Distributors",
+          "description": "Meeting with potential European distribution partners",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-35-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-35-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-36",
+          "date": "2027-05-19",
+          "time": "11:00",
+          "title": "Buyer Meeting: Asian Market",
+          "description": "Pitch session with Asian territory buyers",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-36-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-36-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-37",
+          "date": "2027-05-19",
+          "time": "14:00",
+          "title": "Buyer Meeting: Latin America",
+          "description": "Meeting with Latin American distributors",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-37-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-37-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-38",
+          "date": "2027-05-19",
+          "time": "16:30",
+          "title": "Buyer Meeting: Streaming Services",
+          "description": "Pitch to streaming platform acquisition teams",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-38-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-38-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-39",
+          "date": "2027-05-20",
+          "time": "10:00",
+          "title": "Buyer Meeting: US Distributors",
+          "description": "Follow-up meetings with North American buyers",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-39-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-39-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-40",
+          "date": "2027-05-20",
+          "time": "13:00",
+          "title": "Market Lunch",
+          "description": "Networking lunch with buyers",
+          "location": "La Palme d'Or",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-41",
+          "date": "2027-05-20",
+          "time": "15:00",
+          "title": "Panel: International Co-Productions",
+          "description": "Industry panel discussion",
+          "location": "Palais des Festivals - Salon",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-42",
+          "date": "2027-05-21",
+          "time": "09:30",
+          "title": "Buyer Meeting: Middle East Territories",
+          "description": "Meeting with Middle Eastern distributors",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-42-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-42-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-43",
+          "date": "2027-05-21",
+          "time": "20:00",
+          "title": "Film Premiere Screening",
+          "description": "Red carpet premiere of our feature film",
+          "location": "Grand Th\u00e9\u00e2tre Lumi\u00e8re",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-43-task-1",
+              "title": "Tech rehearsal with venue",
+              "done": false
+            },
+            {
+              "id": "item-43-task-2",
+              "title": "Guest list at door",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-44",
+          "date": "2027-05-22",
+          "time": "11:00",
+          "title": "Buyer Meeting: UK & Ireland",
+          "description": "Meeting with British and Irish distributors",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-44-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-44-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-45",
+          "date": "2027-05-22",
+          "time": "18:00",
+          "title": "Yacht Networking Event",
+          "description": "Industry networking reception",
+          "location": "Port Pierre Canto",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-46",
+          "date": "2027-05-23",
+          "time": "10:00",
+          "title": "Contract Negotiation Sessions",
+          "description": "Follow-up meetings for deal terms",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-47",
+          "date": "2027-05-24",
+          "time": "09:00",
+          "title": "Final Buyer Meetings",
+          "description": "Last round of acquisition meetings",
+          "location": "Market Booth",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-47-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-47-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-48",
+          "date": "2027-05-24",
+          "time": "16:00",
+          "title": "Booth Breakdown",
+          "description": "Pack up market booth materials",
+          "location": "March\u00e9 du Film",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-49",
+          "date": "2027-05-25",
+          "time": "15:00",
+          "title": "Market Closing Ceremony",
+          "description": "Official market wrap event",
+          "location": "Palais des Festivals",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-50",
+          "date": "2027-05-26",
+          "time": "11:00",
+          "title": "Hotel Check-out",
+          "location": "H\u00f4tel Martinez",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-50-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-50-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-51",
+          "date": "2027-05-26",
+          "time": "15:00",
+          "title": "Return Flight - NCE to LAX",
+          "description": "Air France AF3753, departs 15:00",
+          "location": "Nice C\u00f4te d'Azur Airport",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-10",
+          "name": "Market Badges & Accreditation",
+          "url": "https://drive.google.com/file/d/placeholder-cannes-badges",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": true
+        },
+        {
+          "id": "doc-11",
+          "name": "Booth Layout & Materials",
+          "url": "https://drive.google.com/file/d/placeholder-booth",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-12",
+          "name": "Buyer Meeting Schedule",
+          "url": "https://docs.google.com/spreadsheets/d/placeholder-meetings",
+          "type": "spreadsheet",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-13",
+          "name": "Film Screener Links",
+          "url": "https://vimeo.com/placeholder-screener",
+          "type": "video",
+          "assignedTravelerIds": [],
+          "pinned": false
+        }
+      ],
+      "responses": [],
+      "notificationLogs": [],
+      "description": "Cannes market meetings and screening logistics.",
+      "badge": "on-hold",
+      "tags": [
+        "market",
+        "festival"
+      ],
+      "autoNotifyOnAssign": false
+    },
+    {
+      "id": "trip-4",
+      "name": "LA Post-Production Week",
+      "destination": "Los Angeles, California",
+      "startDate": "2026-10-07",
+      "endDate": "2026-10-11",
+      "travelers": [
+        {
+          "id": "traveler-24",
+          "name": "Sarah Chen",
+          "email": "sarah.chen@framelightmedia.com",
+          "phone": "+1-555-0103",
+          "roleOnProduction": "Editor",
+          "shareCode": "sarah-la-post"
+        },
+        {
+          "id": "traveler-25",
+          "name": "Olivia Taylor",
+          "email": "olivia.t@framelightmedia.com",
+          "phone": "+1-555-0112",
+          "roleOnProduction": "Colorist",
+          "shareCode": "olivia-la-post"
+        },
+        {
+          "id": "traveler-26",
+          "name": "David Kim",
+          "email": "david.kim@framelightmedia.com",
+          "phone": "+1-555-0111",
+          "roleOnProduction": "Producer",
+          "shareCode": "david-la-post"
+        },
+        {
+          "id": "traveler-27",
+          "name": "James Park",
+          "email": "james.park@framelightmedia.com",
+          "phone": "+1-555-0109",
+          "roleOnProduction": "Sound Designer",
+          "shareCode": "james-la-post"
+        }
+      ],
+      "itinerary": [
+        {
+          "id": "item-52",
+          "date": "2026-10-07",
+          "time": "08:00",
+          "title": "Flight Departure - JFK to LAX",
+          "description": "American Airlines AA123, arrives 11:15 local time",
+          "location": "JFK Airport, Terminal 8",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-53",
+          "date": "2026-10-07",
+          "time": "13:00",
+          "title": "Hotel Check-in",
+          "description": "The Culver Hotel, 9400 Culver Blvd",
+          "location": "Culver City",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-53-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-53-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-54",
+          "date": "2026-10-07",
+          "time": "15:00",
+          "title": "Color Grading Session - Day 1",
+          "description": "Color correction with David Kim at Company 3",
+          "location": "Company 3 - Santa Monica",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-55",
+          "date": "2026-10-08",
+          "time": "10:00",
+          "title": "VFX Vendor Meeting",
+          "description": "Review VFX shots and discuss revisions",
+          "location": "Digital Domain - Playa Vista",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-55-task-1",
+              "title": "Prep one-pager",
+              "done": false
+            },
+            {
+              "id": "item-55-task-2",
+              "title": "Confirm attendees",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-56",
+          "date": "2026-10-08",
+          "time": "14:00",
+          "title": "Color Grading Session - Day 2",
+          "description": "Continue color correction work",
+          "location": "Company 3 - Santa Monica",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-57",
+          "date": "2026-10-09",
+          "time": "09:00",
+          "title": "Sound Mixing - Day 1",
+          "description": "Final mix session at Skywalker Sound",
+          "location": "Skywalker Sound - Marin County",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-58",
+          "date": "2026-10-09",
+          "time": "13:00",
+          "title": "Composer Session",
+          "description": "Final score review and adjustments",
+          "location": "Remote Nine - Hollywood",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-59",
+          "date": "2026-10-09",
+          "time": "19:00",
+          "title": "Team Dinner",
+          "description": "Post-production team dinner",
+          "location": "Gjelina",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-60",
+          "date": "2026-10-10",
+          "time": "10:00",
+          "title": "Sound Mixing - Day 2",
+          "description": "Continue final mix",
+          "location": "Skywalker Sound - Marin County",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-61",
+          "date": "2026-10-10",
+          "time": "18:00",
+          "title": "Test Screening",
+          "description": "Private test screening with focus group",
+          "location": "ArcLight Hollywood",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-61-task-1",
+              "title": "Tech rehearsal with venue",
+              "done": false
+            },
+            {
+              "id": "item-61-task-2",
+              "title": "Guest list at door",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-62",
+          "date": "2026-10-11",
+          "time": "10:00",
+          "title": "Client Notes Session",
+          "description": "Review test screening feedback with client",
+          "location": "Hotel Conference Room",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-63",
+          "date": "2026-10-11",
+          "time": "15:00",
+          "title": "Return Flight - LAX to JFK",
+          "description": "American Airlines AA456, departs 15:00",
+          "location": "LAX Airport",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-14",
+          "name": "Post-Production Schedule",
+          "url": "https://drive.google.com/file/d/placeholder-post-schedule",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": true
+        },
+        {
+          "id": "doc-15",
+          "name": "Studio Booking Confirmations",
+          "url": "https://drive.google.com/file/d/placeholder-studios",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-16",
+          "name": "Client Notes & Feedback",
+          "url": "https://docs.google.com/document/d/placeholder-notes",
+          "type": "document",
+          "assignedTravelerIds": [],
+          "pinned": false
+        }
+      ],
+      "responses": [],
+      "notificationLogs": [],
+      "description": "LA post week \u2014 edits, color, and sound sessions.",
+      "badge": "planning",
+      "tags": [
+        "post-production"
+      ],
+      "autoNotifyOnAssign": true
+    },
+    {
+      "id": "trip-5",
+      "name": "Toronto Documentary Shoot",
+      "destination": "Toronto, Canada",
+      "startDate": "2026-11-12",
+      "endDate": "2026-11-18",
+      "travelers": [
+        {
+          "id": "traveler-28",
+          "name": "Sarah Chen",
+          "email": "sarah.chen@framelightmedia.com",
+          "phone": "+1-555-0103",
+          "roleOnProduction": "Director",
+          "shareCode": "sarah-toronto"
+        },
+        {
+          "id": "traveler-29",
+          "name": "Elena Rodriguez",
+          "email": "elena.r@framelightmedia.com",
+          "phone": "+1-555-0108",
+          "roleOnProduction": "DP",
+          "shareCode": "elena-toronto"
+        },
+        {
+          "id": "traveler-30",
+          "name": "James Park",
+          "email": "james.park@framelightmedia.com",
+          "phone": "+1-555-0109",
+          "roleOnProduction": "Producer",
+          "shareCode": "james-toronto"
+        },
+        {
+          "id": "traveler-31",
+          "name": "Tom Anderson",
+          "email": "tom.anderson@framelightmedia.com",
+          "phone": "+1-555-0105",
+          "roleOnProduction": "Talent",
+          "shareCode": "tom-toronto"
+        },
+        {
+          "id": "traveler-32",
+          "name": "Marcus Williams",
+          "email": "marcus.w@framelightmedia.com",
+          "phone": "+1-555-0101",
+          "roleOnProduction": "Gaffer",
+          "shareCode": "marcus-toronto"
+        },
+        {
+          "id": "traveler-33",
+          "name": "Lisa Patel",
+          "email": "lisa.patel@framelightmedia.com",
+          "phone": "+1-555-0106",
+          "roleOnProduction": "Sound Mixer",
+          "shareCode": "lisa-toronto"
+        }
+      ],
+      "itinerary": [
+        {
+          "id": "item-64",
+          "date": "2026-11-12",
+          "time": "09:00",
+          "title": "Flight Departure - NYC to YYZ",
+          "description": "Air Canada AC101, arrives 10:30 local time",
+          "location": "Newark Liberty Airport",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-65",
+          "date": "2026-11-12",
+          "time": "12:00",
+          "title": "Equipment Rental Pickup",
+          "description": "Pick up camera and sound equipment",
+          "location": "Vistek Toronto",
+          "type": "transport",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-66",
+          "date": "2026-11-12",
+          "time": "14:00",
+          "title": "Hotel Check-in",
+          "description": "The Fairmont Royal York, 100 Front St W",
+          "location": "Toronto",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-66-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-66-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-67",
+          "date": "2026-11-12",
+          "time": "16:00",
+          "title": "Location Permits Review",
+          "description": "Review all location permits and access details",
+          "location": "Hotel Conference Room",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-68",
+          "date": "2026-11-13",
+          "time": "09:00",
+          "title": "Interview Day 1 - Subject A",
+          "description": "Documentary interview with primary subject",
+          "location": "Subject's residence - Yorkville",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-69",
+          "date": "2026-11-13",
+          "time": "14:00",
+          "title": "B-Roll Capture - Downtown",
+          "description": "Capture cityscape and establishing shots",
+          "location": "Financial District",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-70",
+          "date": "2026-11-13",
+          "time": "19:00",
+          "title": "Team Dinner",
+          "description": "Crew dinner and day review",
+          "location": "Canoe Restaurant",
+          "type": "meal",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-71",
+          "date": "2026-11-14",
+          "time": "10:00",
+          "title": "Interview Day 2 - Subject B",
+          "description": "Second documentary interview",
+          "location": "University of Toronto Campus",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-72",
+          "date": "2026-11-14",
+          "time": "15:00",
+          "title": "B-Roll Capture - Waterfront",
+          "description": "Capture waterfront and harbor scenes",
+          "location": "Harbourfront Centre",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-73",
+          "date": "2026-11-15",
+          "time": "09:00",
+          "title": "Interview Day 3 - Subject C",
+          "description": "Third documentary interview",
+          "location": "Distillery District Studio",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-74",
+          "date": "2026-11-15",
+          "time": "16:00",
+          "title": "B-Roll Capture - Public Spaces",
+          "description": "Capture street scenes and public interactions",
+          "location": "Kensington Market",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-75",
+          "date": "2026-11-16",
+          "time": "11:00",
+          "title": "Interview Day 4 - Subject D",
+          "description": "Final primary interview",
+          "location": "CBC Broadcasting Centre",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-76",
+          "date": "2026-11-17",
+          "time": "10:00",
+          "title": "Pickup Shots & Additional B-Roll",
+          "description": "Capture any missing footage identified during review",
+          "location": "Various locations",
+          "type": "activity",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-77",
+          "date": "2026-11-17",
+          "time": "15:00",
+          "title": "Equipment Return",
+          "description": "Return all rented equipment",
+          "location": "Vistek Toronto",
+          "type": "transport",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        },
+        {
+          "id": "item-78",
+          "date": "2026-11-18",
+          "time": "10:00",
+          "title": "Hotel Check-out",
+          "location": "The Fairmont Royal York",
+          "type": "accommodation",
+          "assignedTravelerIds": [],
+          "tasks": [
+            {
+              "id": "item-78-task-1",
+              "title": "Confirm reservations",
+              "done": true
+            },
+            {
+              "id": "item-78-task-2",
+              "title": "Share Wi\u2011Fi / late checkout notes",
+              "done": false
+            }
+          ],
+          "documentIds": []
+        },
+        {
+          "id": "item-79",
+          "date": "2026-11-18",
+          "time": "13:00",
+          "title": "Return Flight - YYZ to NYC",
+          "description": "Air Canada AC102, departs 13:00",
+          "location": "Toronto Pearson Airport",
+          "type": "flight",
+          "assignedTravelerIds": [],
+          "tasks": [],
+          "documentIds": []
+        }
+      ],
+      "documents": [
+        {
+          "id": "doc-17",
+          "name": "Interview Release Forms",
+          "url": "https://drive.google.com/file/d/placeholder-releases",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": true
+        },
+        {
+          "id": "doc-18",
+          "name": "Location Permits Toronto",
+          "url": "https://drive.google.com/file/d/placeholder-toronto-permits",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-19",
+          "name": "Equipment Insurance",
+          "url": "https://drive.google.com/file/d/placeholder-insurance",
+          "type": "application/pdf",
+          "assignedTravelerIds": [],
+          "pinned": false
+        },
+        {
+          "id": "doc-20",
+          "name": "Shot List & Interview Questions",
+          "url": "https://docs.google.com/document/d/placeholder-shotlist",
+          "type": "document",
+          "assignedTravelerIds": [],
+          "pinned": false
+        }
+      ],
+      "responses": [],
+      "notificationLogs": [],
+      "description": "Toronto documentary shoot with location moves.",
+      "badge": "wrap",
+      "tags": [
+        "documentary",
+        "multi-city"
+      ],
+      "autoNotifyOnAssign": false
+    }
+  ]
+}

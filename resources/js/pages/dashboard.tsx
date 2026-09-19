@@ -1,5 +1,5 @@
 import { Head } from '@inertiajs/react';
-import { CalendarDays, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { NewTripPanel } from '@/components/trips/new-trip-panel';
 import { TripBoard } from '@/components/trips/trip-board';
@@ -32,7 +32,7 @@ export default function Dashboard({ trips }: DashboardPageProps) {
     return (
         <>
             <Head title="Dashboard" />
-            <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+            <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex flex-wrap items-center gap-3">
                         <h1 className="text-2xl font-bold">My Trips</h1>
@@ -43,7 +43,7 @@ export default function Dashboard({ trips }: DashboardPageProps) {
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                {/* <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <Input
                         className="sm:max-w-xs"
                         placeholder="Search trips…"
@@ -54,22 +54,10 @@ export default function Dashboard({ trips }: DashboardPageProps) {
                     <p className="text-sm text-muted-foreground">
                         Board by trip status · {filteredTrips.length} shown
                     </p>
-                </div>
+                </div> */}
 
-                {trips.length === 0 ? (
-                    <div className="py-12 text-center">
-                        <CalendarDays className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-                        <h2 className="mb-2 text-lg font-semibold">No trips yet</h2>
-                        <p className="text-sm text-muted-foreground">
-                            Create your first trip to get started
-                        </p>
-                        <Button className="mt-4" onClick={() => setNewTripOpen(true)}>
-                            <Plus className="h-4 w-4" />
-                            New Trip
-                        </Button>
-                    </div>
-                ) : filteredTrips.length === 0 ? (
-                    <div className="py-12 text-center">
+                {trips.length > 0 && filteredTrips.length === 0 ? (
+                    <div className="flex flex-1 flex-col items-center justify-center py-12 text-center">
                         <h2 className="mb-2 text-lg font-semibold">No matching trips</h2>
                         <p className="text-sm text-muted-foreground">
                             Try a different search

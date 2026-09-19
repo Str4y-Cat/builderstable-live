@@ -6,30 +6,15 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
-import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-} from '@/components/ui/sheet';
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
-import { tripBadgeLabel, tripTagLabel } from '@/lib/tripLabels';
 import { store } from '@/routes/trips';
-import {
-    TRIP_BADGES,
-    TRIP_DESCRIPTION_MAX,
-    TRIP_TAGS,
-    type TripBadge,
-    type TripTag,
-} from '@/types/trip';
+import { TRIP_DESCRIPTION_MAX } from '@/types/trip';
 
 export function NewTripPanel({
     open,
@@ -40,8 +25,6 @@ export function NewTripPanel({
 }) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [badge, setBadge] = useState<TripBadge>('planning');
-    const [tags, setTags] = useState<TripTag[]>([]);
     const [autoNotifyOnAssign, setAutoNotifyOnAssign] = useState(true);
 
     const remainingChars = TRIP_DESCRIPTION_MAX - description.length;
@@ -51,17 +34,9 @@ export function NewTripPanel({
         if (open) {
             setName('');
             setDescription('');
-            setBadge('planning');
-            setTags([]);
             setAutoNotifyOnAssign(true);
         }
     }, [open]);
-
-    function toggleTag(tag: TripTag, checked: boolean) {
-        setTags((current) =>
-            checked ? [...current, tag] : current.filter((item) => item !== tag),
-        );
-    }
 
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
@@ -83,22 +58,16 @@ export function NewTripPanel({
         router.post(store.url(), {
             name: name.trim(),
             description: description.trim(),
-            badge,
-            tags,
             auto_notify_on_assign: autoNotifyOnAssign,
         });
     }
 
     return (
-        <Sheet open={open} onOpenChange={onOpenChange}>
-            <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
-                <SheetHeader className="border-b pr-12">
-                    <SheetTitle>New trip</SheetTitle>
-                    <SheetDescription>
-                        Description-first create. Dates come from itinerary events later —
-                        no destination or date fields here.
-                    </SheetDescription>
-                </SheetHeader>
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent className="flex max-h-[90dvh] flex-col gap-0 overflow-hidden p-0 sm:max-w-md">
+                <DialogHeader className="shrink-0 border-b px-6 py-4 pr-12">
+                    <DialogTitle>New trip</DialogTitle>
+                </DialogHeader>
                 <form
                     className="flex flex-1 flex-col gap-0 overflow-hidden"
                     onSubmit={handleSubmit}
@@ -141,51 +110,6 @@ export function NewTripPanel({
                                 {remainingChars} characters remaining
                             </p>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="new-trip-badge">Badge</Label>
-                            <Select
-                                value={badge}
-                                onValueChange={(value) => setBadge(value as TripBadge)}
-                            >
-                                <SelectTrigger id="new-trip-badge" className="w-full">
-                                    <SelectValue placeholder="Select badge" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {TRIP_BADGES.map((item) => (
-                                        <SelectItem key={item} value={item}>
-                                            {tripBadgeLabel[item]}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div className="space-y-2">
-                            <Label>Tags</Label>
-                            <p className="text-xs text-muted-foreground">
-                                Fixed set — pick any that apply.
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                                {TRIP_TAGS.map((tag) => (
-                                    <label
-                                        key={tag}
-                                        className={`inline-flex cursor-pointer items-center gap-1.5 rounded-md border px-2 py-1 text-xs ${
-                                            tags.includes(tag)
-                                                ? 'border-foreground bg-foreground text-background'
-                                                : 'bg-background'
-                                        }`}
-                                    >
-                                        <Checkbox
-                                            className="sr-only"
-                                            checked={tags.includes(tag)}
-                                            onCheckedChange={(checked) =>
-                                                toggleTag(tag, checked === true)
-                                            }
-                                        />
-                                        {tripTagLabel[tag]}
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
                         <label className="flex cursor-pointer items-start gap-2 rounded-lg border px-3 py-2 text-sm">
                             <Checkbox
                                 className="mt-0.5"
@@ -202,7 +126,7 @@ export function NewTripPanel({
                             </span>
                         </label>
                     </div>
-                    <SheetFooter className="border-t sm:flex-row">
+                    <DialogFooter className="shrink-0 border-t px-6 py-4 sm:flex-row">
                         <Button
                             type="button"
                             variant="outline"
@@ -214,9 +138,9 @@ export function NewTripPanel({
                         <Button type="submit" className="w-full" disabled={!canSubmit}>
                             Create trip
                         </Button>
-                    </SheetFooter>
+                    </DialogFooter>
                 </form>
-            </SheetContent>
-        </Sheet>
+            </DialogContent>
+        </Dialog>
     );
 }

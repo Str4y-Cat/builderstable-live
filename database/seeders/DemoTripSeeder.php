@@ -25,7 +25,7 @@ class DemoTripSeeder extends Seeder
         ]));
 
         $payload = json_decode(
-            (string) file_get_contents(base_path('mock/src/data/mockData.json')),
+            (string) file_get_contents(database_path('seeders/data/mockData.json')),
             true,
             flags: JSON_THROW_ON_ERROR,
         );
