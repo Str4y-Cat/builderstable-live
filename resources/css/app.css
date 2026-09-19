@@ -7,7 +7,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
+/* `inline` so utilities emit the underlying variable (background-color:
+   var(--background)) rather than a reference to --color-background resolved at
+   :root. Without it, a subtree that redefines --background — the landing's
+   dark ProblemSection band — is ignored, because custom-property substitution
+   happens where the variable is declared. */
+@theme inline {
     --font-sans:
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
@@ -16,6 +21,11 @@
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
+    /* Without these, rounded-xl/2xl/3xl fall back to Tailwind's stock values
+       and sit off the token scale. The landing page uses rounded-2xl. */
+    --radius-xl: calc(var(--radius) + 4px);
+    --radius-2xl: calc(var(--radius) + 8px);
+    --radius-3xl: calc(var(--radius) + 16px);
 
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -100,7 +110,9 @@
 .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
-    --card: oklch(0.145 0 0);
+    /* Lifted off --background so bg-card surfaces read as raised rather than
+       flat. The landing's dark ProblemSection band depends on the contrast. */
+    --card: oklch(0.205 0 0);
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.145 0 0);
     --popover-foreground: oklch(0.985 0 0);
@@ -140,4 +152,35 @@
     body {
         @apply bg-background text-foreground;
     }
+}
+
+/* Landing page — marketing surface only. Uses existing tokens; adds no new ones. */
+.landing-hero-bg {
+    background-image: radial-gradient(
+        ellipse 80% 55% at 50% 0%,
+        color-mix(in oklch, var(--muted) 85%, transparent),
+        transparent 70%
+    );
+}
+
+.landing-hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(to right, var(--border) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(
+        ellipse 60% 45% at 50% 0%,
+        #000,
+        transparent 75%
+    );
+    mask-image: radial-gradient(
+        ellipse 60% 45% at 50% 0%,
+        #000,
+        transparent 75%
+    );
+    opacity: 0.5;
+    pointer-events: none;
 }
