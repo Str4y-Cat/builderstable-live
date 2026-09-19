@@ -1,5 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+import AppLogoIcon from '@/components/app-logo-icon';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { dashboard, home, login } from '@/routes';
@@ -39,8 +40,9 @@ export function LandingNav() {
             <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
                 <Link
                     href={home()}
-                    className="text-base font-semibold tracking-tight transition-opacity hover:opacity-70"
+                    className="inline-flex items-center gap-2 text-base font-semibold tracking-tight transition-opacity hover:opacity-70"
                 >
+                    <AppLogoIcon className="size-5 fill-current" />
                     TellMe
                 </Link>
 

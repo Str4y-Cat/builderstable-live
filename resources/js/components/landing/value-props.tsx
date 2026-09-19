@@ -72,7 +72,7 @@ export function ValueProps() {
 
                             <p
                                 className={cn(
-                                    'text-muted-foreground mt-3 text-sm leading-relaxed',
+                                    'text-muted-foreground mt-3 text-base leading-relaxed',
                                     index === 0 && 'max-w-2xl',
                                 )}
                             >

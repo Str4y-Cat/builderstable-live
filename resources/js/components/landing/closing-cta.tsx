@@ -1,3 +1,4 @@
+import AppLogoIcon from '@/components/app-logo-icon';
 import { DemoCtaButtons } from '@/components/landing/demo-cta-buttons';
 import { displayTitle } from '@/lib/typography';
 
@@ -8,8 +9,8 @@ export function ClosingCta() {
                 <h2 className={displayTitle}>
                     Change it once. Everyone affected knows.
                 </h2>
-                <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-base leading-relaxed">
-                    The demo runs on a seeded six-person festival shoot across
+                <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-lg leading-relaxed">
+                    The demo runs on a seeded seven-person festival shoot across
                     Park City. Move a call time and watch it propagate.
                 </p>
 
@@ -20,10 +21,11 @@ export function ClosingCta() {
 
             <footer className="border-border mx-auto mt-24 max-w-6xl border-t px-4 pt-8 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
-                    <span className="text-sm font-semibold tracking-tight">
+                    <span className="inline-flex items-center gap-2 text-sm font-semibold tracking-tight">
+                        <AppLogoIcon className="size-5 fill-current" />
                         TellMe
                     </span>
-                    <p className="text-muted-foreground text-xs">
+                    <p className="text-muted-foreground text-sm">
                         Itinerary management for crews.
                     </p>
                 </div>

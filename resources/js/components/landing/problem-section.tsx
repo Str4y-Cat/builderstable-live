@@ -35,7 +35,7 @@ export function ProblemSection() {
                     <h2 className={cn(displayTitle, 'mt-4')}>
                         Three artifacts, kept in sync by hand.
                     </h2>
-                    <p className="text-muted-foreground mt-4 text-base leading-relaxed">
+                    <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
                         Every production travel desk runs the same stack. None
                         of the three pieces knows the other two exist.
                     </p>
@@ -48,10 +48,10 @@ export function ProblemSection() {
                             className="border-border bg-card rounded-2xl border p-5"
                         >
                             <artifact.icon className="text-muted-foreground size-5" />
-                            <h3 className="mt-4 text-sm font-semibold">
+                            <h3 className="mt-4 text-base font-semibold">
                                 {artifact.title}
                             </h3>
-                            <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+                            <p className="text-muted-foreground mt-2 text-base leading-relaxed">
                                 {artifact.body}
                             </p>
                         </div>
@@ -63,7 +63,7 @@ export function ProblemSection() {
                         <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">
                             Then the schedule moves.
                         </h3>
-                        <p className="text-muted-foreground mt-4 text-base leading-relaxed">
+                        <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
                             Weather, permits, a talent conflict — the shooting
                             schedule changes several times a day. Nothing
                             propagates. You work out who&rsquo;s affected from
@@ -76,7 +76,7 @@ export function ProblemSection() {
                     <div className="space-y-4">
                         <div className="border-border bg-card rounded-2xl border p-5">
                             <p className={eyebrow}>What it costs you</p>
-                            <p className="mt-3 text-sm leading-relaxed">
+                            <p className="mt-3 text-base leading-relaxed">
                                 Duplicate bookings. Two people on conflicting
                                 itineraries. A driver waiting at a pickup nobody
                                 moved.
@@ -84,7 +84,7 @@ export function ProblemSection() {
                         </div>
                         <div className="border-border bg-card rounded-2xl border p-5">
                             <p className={eyebrow}>Today&rsquo;s patch</p>
-                            <p className="mt-3 text-sm leading-relaxed">
+                            <p className="mt-3 text-base leading-relaxed">
                                 Make one person the single point of contact — a
                                 people-patch that holds right up until that
                                 person is on a plane.

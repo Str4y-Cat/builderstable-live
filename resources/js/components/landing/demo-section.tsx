@@ -11,7 +11,7 @@ export function DemoSection() {
                     <h2 className={displayTitle}>
                         One live itinerary instead of three artifacts.
                     </h2>
-                    <p className="text-muted-foreground mt-4 text-base leading-relaxed sm:text-lg">
+                    <p className="text-muted-foreground mt-4 text-lg leading-relaxed sm:text-xl">
                         TellMe replaces the spreadsheet-plus-inbox-plus-PDF
                         routine with a single live itinerary. Change it once —
                         everyone affected finds out automatically.
@@ -22,10 +22,10 @@ export function DemoSection() {
                     <BrowserFrame url="tellme.app/dashboard/trips/sundance-2026">
                         <PropagationDemo />
                     </BrowserFrame>
-                    <p className="text-muted-foreground mt-4 text-center text-sm">
+                    <p className="text-muted-foreground mt-4 text-center text-base">
                         A call time moves by 90 minutes. The three travelers
                         attached to it are notified and re-set to pending; the
-                        other three aren&rsquo;t touched.
+                        other four aren&rsquo;t touched.
                     </p>
                 </div>
             </div>
