@@ -25,6 +25,31 @@ Blueprint only owns migrations/models/factories here — controllers, requests, 
 
 ---
 
+## Project Progress
+
+**Last updated:** 2026-09-19
+
+| Phase | Scope | Status |
+|-------|-------|--------|
+| 1 | Database, models, factories (Blueprint) | ✅ Done |
+| 2 | Controllers, routes, requests, policy, tests | ✅ Done |
+| 3 | Port all 22 Vue components → React | ✅ Done |
+| 4 | Wire 3 pages (Dashboard, TripDetail, TravelerView) | ✅ Done |
+| — | Demo seeding (all 5 mock trips) | ✅ Done |
+| 5.1 | Auto-notify (observer/queue/notification_logs) | ❌ Not started — `NotificationComposer` is a simulated send |
+| 5.2 | Response rollup | ✅ Done |
+| 5.3 | Date derivation | ✅ Done |
+| 5.4 | Authorization policies | ✅ Done — `TripPolicy` + `AuthorizesTripUpdates` |
+| 6 | Testing & QA | ⏳ Partial — 58 tests pass (54 + 4 skipped); browser tests pending |
+
+**Quality gates not green:**
+- `npm run check` fails — oxfmt can't parse `draft.yaml` (needs `draft.yaml` in lint/fmt ignore config)
+- PHPStan level 7 — 62 errors (mostly missing relationship generics from Blueprint output + some real type issues)
+
+**Demo state:** Log in as `test@example.com` / `password` — board shows Sundance (locked), Berlin (planning), Cannes (on-hold), LA Post (planning), Toronto (wrap). Share links use mock codes, e.g. `/trips/marcus-sundance`.
+
+---
+
 ## Current State Assessment
 
 ### Mockup (`/mock`)
@@ -42,11 +67,12 @@ Blueprint only owns migrations/models/factories here — controllers, requests, 
 - ✅ Fortify authentication (login, register, 2FA, passkeys)
 - ✅ Tailwind CSS 4.3.3 + shadcn-react components
 - ✅ Wayfinder (typed route generation)
-- ❌ **No domain models** (only User exists)
-- ❌ **No domain routes** (only auth/settings)
-- ❌ **No business logic**
+- ✅ **Domain models + schema** (Trip, Traveler, ItineraryItem, ItineraryTask, Document, Response, NotificationLog)
+- ✅ **Domain routes/controllers** (trip, itinerary item, traveler, document, response, traveler share view)
+- ✅ **Business logic** (response rollup, date derivation, share-code gen, trip authorization)
+- ✅ **Demo data** (5 seeded trips from mock)
 
-**Gap:** Everything except auth infrastructure
+**Gap:** Auto-notify delivery, full QA/polish gates
 
 ---
 
@@ -623,7 +649,9 @@ interface TravelerViewProps {
 
 **Session Duration:** 2-3 sessions
 
-### 5.1 Auto-Notification Logic
+### 5.1 Auto-Notification Logic — ❌ NOT IMPLEMENTED
+
+> `NotificationComposer` only simulates a send (side effect + test hook). No observer, no queued job, no `notification_logs` writes yet. This is the last remaining Phase 5 feature.
 
 **Feature:** When `trip.auto_notify_on_assign` is true, send notification on first assignment
 
@@ -698,11 +726,11 @@ interface TravelerViewProps {
 - Cache trip stats
 
 **Success Criteria (Phase 5):**
-- ✅ Auto-notify works end-to-end
-- ✅ Response rollup accurate
-- ✅ Authorization locked down
-- ✅ Error handling graceful
-- ✅ Performance acceptable (< 100ms routes)
+- ✅ Auto-notify works end-to-end — ❌ pending (5.1)
+- ✅ Response rollup accurate — done (`ItineraryItem::responseRollup()`)
+- ✅ Authorization locked down — done (`TripPolicy`, deny-as-404)
+- ✅ Error handling graceful — done (FormRequests + Inertia toasts)
+- ✅ Performance acceptable (< 100ms routes) — partial (eager loading done; indexes on `share_code`/`user_id`/`date` not added)
 
 ---
 
@@ -734,17 +762,17 @@ interface TravelerViewProps {
 
 ### 6.3 Manual QA Checklist
 
-- [ ] Dashboard shows all trips
-- [ ] Create new trip works
-- [ ] Edit trip details works
-- [ ] Add/edit/delete itinerary items
-- [ ] Add/remove travelers
-- [ ] Upload/delete documents
-- [ ] Send notifications (check logs)
-- [ ] Traveler share link works
-- [ ] Confirm/decline responses save
-- [ ] Authorization prevents cross-user access
-- [ ] Mobile responsive (basic check)
+- [x] Dashboard shows all trips
+- [x] Create new trip works
+- [x] Edit trip details works
+- [x] Add/edit/delete itinerary items
+- [x] Add/remove travelers
+- [x] Upload/delete documents
+- [ ] Send notifications (check logs) — ❌ blocked on 5.1
+- [x] Traveler share link works
+- [x] Confirm/decline responses save
+- [x] Authorization prevents cross-user access
+- [ ] Mobile responsive (basic check) — not verified
 
 ---
 
@@ -784,12 +812,12 @@ php artisan view:cache
 
 ### Hackathon Demo Ready
 
-- [ ] Curator can create trip in < 30 seconds
-- [ ] Adding 5 itinerary items takes < 2 minutes
-- [ ] Traveler view loads instantly via share link
-- [ ] Responses save and reflect in rollup
-- [ ] No console errors
-- [ ] Mobile layout doesn't break
+- [x] Curator can create trip in < 30 seconds — flows covered by feature tests; UI not timing-verified
+- [x] Adding 5 itinerary items takes < 2 minutes — flows covered by feature tests
+- [x] Traveler view loads instantly via share link — tested
+- [x] Responses save and reflect in rollup — tested
+- [ ] No console errors — not browser-verified
+- [ ] Mobile layout doesn't break — pending 6.2 browser checks
 
 ### Production Ready (Post-Hackathon)
 
@@ -843,23 +871,23 @@ php artisan view:cache
 ### Immediate Actions
 
 1. ✅ **`draft.yaml` created and validated** — schema parses, migrates, and casts correctly (see Phase 1.1)
-2. ✅ **Factories generated** — use in tests; no mock-data seeder
-3. **Review `draft.yaml`** - Confirm field names/types match team expectations before writing controllers against them
-4. **Set up project board** - Track progress (GitHub Projects, Linear, etc.)
+2. ✅ **Factories generated** — use in tests; demo data ported via `DemoTripSeeder` (out of the no-mock-data-seeder anti-pattern)
+3. ✅ **Review `draft.yaml`** — field names/types confirmed during Phase 2
+4. ✅ **Set up project board** — progress tracked in this doc
 
 ### Session Planning
 
 **Recommended Order:**
 
 1. ~~**Session 1:** Phase 1 (database, models, factories)~~ — done via Blueprint
-2. **Session 2:** Trip management (routes, controller, tests)
-3. **Session 3:** Itinerary + Travelers (routes, controllers, tests)
-4. **Session 4:** Core components (TripCard, TripBoard, TripHeader)
-5. **Session 5:** Itinerary components
-6. **Session 6:** Dashboard page (wire it up)
-7. **Session 7:** Trip detail page
-8. **Session 8:** Traveler share view
-9. **Session 9+:** Polish, testing, demo prep
+2. ~~**Session 2:** Trip management (routes, controller, tests)~~ — done
+3. ~~**Session 3:** Itinerary + Travelers (routes, controllers, tests)~~ — done
+4. ~~**Session 4:** Core components (TripCard, TripBoard, TripHeader)~~ — done
+5. ~~**Session 5:** Itinerary components~~ — done
+6. ~~**Session 6:** Dashboard page (wire it up)~~ — done
+7. ~~**Session 7:** Trip detail page~~ — done
+8. ~~**Session 8:** Traveler share view~~ — done
+9. **Session 9+:** Phase 5.1 auto-notify, QA gates (lint/PHPStan), browser tests, demo prep
 
 ---
 
