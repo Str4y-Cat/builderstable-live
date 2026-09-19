@@ -33,14 +33,12 @@ export default function Dashboard({ trips }: DashboardPageProps) {
         <>
             <Head title="Dashboard" />
             <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="flex flex-wrap items-center gap-3">
-                        <h1 className="text-2xl font-bold">My Trips</h1>
-                        <Button onClick={() => setNewTripOpen(true)}>
-                            <Plus className="h-4 w-4" />
-                            New Trip
-                        </Button>
-                    </div>
+                <div className="flex items-center justify-between gap-3">
+                    <h1 className="text-2xl font-bold">My Trips</h1>
+                    <Button onClick={() => setNewTripOpen(true)}>
+                        <Plus className="h-4 w-4" />
+                        New Trip
+                    </Button>
                 </div>
 
                 {/* <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
