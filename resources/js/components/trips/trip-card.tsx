@@ -28,7 +28,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { formatDateRangeLabel } from '@/lib/tripHelpers';
-import { tripBadgeClass, tripBadgeLabel, tripTagLabel } from '@/lib/tripLabels';
+import { tripBadgeLabel, tripTagLabel } from '@/lib/tripLabels';
 import { destroy, show, store, update } from '@/routes/trips';
 import type { TripSummary } from '@/types/trip';
 
@@ -121,9 +121,6 @@ export function TripCard({ trip }: { trip: TripSummary }) {
                 <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0 flex-1 space-y-2">
-                            <Badge className={tripBadgeClass[trip.badge]}>
-                                {tripBadgeLabel[trip.badge]}
-                            </Badge>
                             <CardTitle className="text-base leading-snug">
                                 {trip.name}
                             </CardTitle>
