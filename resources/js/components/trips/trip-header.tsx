@@ -1,9 +1,15 @@
 import { router } from '@inertiajs/react';
-import { Download, ExternalLink } from 'lucide-react';
+import { ChevronDown, Download, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import {
     formatDateRangeLabel,
     isDateRangeDerived,
@@ -107,15 +113,28 @@ export function TripHeader({ trip }: { trip: Trip }) {
                     </span>
                 </label>
             </div>
-            <div className="flex shrink-0 flex-wrap gap-2">
-                <Button variant="outline" onClick={downloadPdf}>
-                    <Download className="h-4 w-4" />
-                    Download PDF
-                </Button>
-                <Button disabled={!firstShareCode} onClick={previewTraveler}>
-                    <ExternalLink className="h-4 w-4" />
-                    Preview traveler view
-                </Button>
+            <div className="flex shrink-0">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline">
+                            Actions
+                            <ChevronDown className="h-4 w-4" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-52">
+                        <DropdownMenuItem onSelect={downloadPdf}>
+                            <Download className="h-4 w-4" />
+                            Download PDF
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                            disabled={!firstShareCode}
+                            onSelect={previewTraveler}
+                        >
+                            <ExternalLink className="h-4 w-4" />
+                            Preview traveler view
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </div>
         </div>
     );
